@@ -3,8 +3,12 @@ class Solution:
         flight = [0] * (n+1)
 
         for f,l, s in bookings:
-            for i in range(f,l+1):
-                flight[i]+=s
+            flight[f - 1] += s
+            if l<n:
+                flight[l] -= s
+
+        for i in range(1, n):
+            flight[i] += flight[i - 1]
                 
-        return flight[1:]
+        return flight[:n]
         
